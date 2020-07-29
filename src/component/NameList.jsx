@@ -3,6 +3,8 @@ import NameListitem from './NameListitem';
 
 function NameList() {
     const nameList = [{
+
+        id: 1,
         name: { title: "mr", first: "Brad", last: "Gibson" },
         location: { city: "kilcoole", },
         email: "brad.gibson@example.com",
@@ -11,6 +13,7 @@ function NameList() {
 
     },
     {
+        id: 2,
         name: { title: "Mr", first: "Christopher", last: "Steinnes" },
         location: { city: "Namsos", },
         email: "christopher.steinnes@example.com",
@@ -19,6 +22,7 @@ function NameList() {
 
     },
     {
+        id: 3,
         name: { title: "Mrs", first: "Eva", last: "Bouchard" },
         location: { city: "Sherbrooke", },
         email: "eva.bouchard@example.com",
@@ -31,6 +35,7 @@ function NameList() {
         return nameList.map((aName) => {
             return (
                 <NameListitem
+                    key={aName.id}
                     name={aName.name.first + ' ' + aName.name.last}
                     city={aName.location.city}
                     mail={aName.email}

@@ -50,13 +50,14 @@ function NameList() {
 
     return (
         <div>
-            <h1>Name List</h1>
-            <hr />
 
-            <ul>
-                {nameListComponent()}
+            <div className="container mt-4">
+                <ul className="List-group">
+                    {nameListComponent()}
 
-            </ul>
+                </ul>
+            </div>
+
         </div>);
 
 }

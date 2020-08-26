@@ -1,8 +1,11 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import NameListitem from './NameListitem';
 
 function NameList() {
-    const nameList = [{
+
+    const [loadData, setLoadData] = useState(new Date());
+
+    const [nameList, setNameList] = useState([{
 
         id: 1,
         name: { title: "mr", first: "Brad", last: "Gibson" },
@@ -29,7 +32,17 @@ function NameList() {
         dob: { date: "2008-08-06T02:16:52.832Z", age: 12 },
         picture: { medium: "https://randomuser.me/api/portraits/med/women/3.jpg", },
 
-    }];
+    }]);
+
+    useEffect(() => {
+        fetch("https://randomuser.me/api").then(
+            response => {
+                return response.json();
+            }
+        ).then((responseData) => {
+            setNameList(nameList => [...nameList, responseData.results[0]]);
+        });
+    }, [loadData]);
 
     const nameListComponent = () => {
         return nameList.map((aName) => {
@@ -48,10 +61,15 @@ function NameList() {
         );
     };
 
+    const addUserHandler = () => {
+        setLoadData(new Date());
+    };
+
     return (
         <div>
 
             <div className="container mt-4">
+                <button className="btn btn-primary mb-2 ml-5" onClick={addUserHandler} >Add Name</button>
                 <ul className="List-group">
                     {nameListComponent()}
 
